@@ -1,5 +1,5 @@
 # Geo-Guess
-Image --> region, coordinates
+Model to classify image --> region, coordinates
 
 make_grid.ipynb splits the map into 88 squares (method of splitting from https://nirvan66.github.io/geoguessr.html) 
 
