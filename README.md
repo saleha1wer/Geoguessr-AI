@@ -1,7 +1,7 @@
 # Geo-Guess
 Image --> region, coordinates
 
-make_grid.ipynb splits the map into 88 squares (method of splitting from https://nirvan66.github.io/geoguessr.html) \\
+make_grid.ipynb splits the map into 88 squares (method of splitting from https://nirvan66.github.io/geoguessr.html) 
 
 gen_images.py generates 200 images per square in the grid, saves in 'images/'.
 
