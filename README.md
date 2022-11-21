@@ -13,9 +13,9 @@ network.py initialises a network
 
 load_data.py loads the train, test and validation data arrays from a directory containing the data.
 
-main.py does 
-  training for 30 epochs
-  unfreeze the RSP
-  training for for 30 epochs
-  freeze everything but RSP
-  training for 20 epochs
+main.py does <br />
+  training for 30 epochs <br />
+  unfreeze the RSP <br />
+  training for for 30 epochs <br />
+  freeze everything but RSP <br />
+  training for 20 epochs <br />
