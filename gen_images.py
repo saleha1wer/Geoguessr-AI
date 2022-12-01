@@ -18,7 +18,7 @@ def gen_image(bounds,name):
         'location': '{},{}'.format(cord[1],cord[0]), # coordinates
         'heading': str(heading), # the rotation angle around the camera locus in degrees relative from true north
         'pitch': str(0), # specifies the up or down angle of the camera relative to the Street View vehicle
-        'key': 'AIzaSyCEdvmgZbgcSYtnPY_9SghqqgA5ng2TKeM'
+        'key': 'insert key here'
         }]
     results = google_streetview.api.results(params)
     results.download_links('images')
