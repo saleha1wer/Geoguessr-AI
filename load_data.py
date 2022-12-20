@@ -20,8 +20,8 @@ def load_train_test_splits(path_to_imgdir,test_size=0.1,val_size=0.1,seed=0,norm
     X = []
     Y1 = []
     Y2 =[]
-    for path in tqdm(paths,desc='Loading and Processing Data'):
-    #for path in tqdm(np.random.choice(paths,1000),desc='Loading and Processing Data',ascii=" ▖▘▝▗▚▞█"):
+    for path in tqdm(paths,desc='Loading and Processing Data',ascii=" ▖▘▝▗▚▞█"):
+    # for path in tqdm(np.random.choice(paths,1000),desc='Loading and Processing Data',ascii=" ▖▘▝▗▚▞█"):
         imgs_paths = os.listdir(path)
         try:
             imgs_paths = [i.decode('UTF-8') for i in imgs_paths]
