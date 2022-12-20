@@ -8,14 +8,15 @@ gen_images.py generates 200 images per square in the grid, saves in 'images/'.
 The generated data can be downloaded from:
 https://www.dropbox.com/s/hmz8m8sd3d2u8xj/images.zip?dl=0
 
+visualize_data.ipynb includes a visualisation of the gathered data
 
 network.py initialises a network 
 
 load_data.py loads the train, test and validation data arrays from a directory containing the data.
 
-main.py does <br />
-  training for 30 epochs <br />
-  unfreeze the RSP <br />
-  training for for 30 epochs <br />
-  freeze everything but RSP <br />
-  training for 20 epochs <br />
+main.py trains a model with Inception-ResNet-v2 for feature extraction for 100 epochs on the full dataset. To use a different feature extraction or to exclude augmented data, change the variables that are initialised in main.py <br />
+
+evaluate.py evalautes the model, (using three different approaches).
+
+training_plots.ipynb generated plots that demonstrate the training process.
+
