@@ -3,7 +3,11 @@ import numpy as np
 import PIL.Image as Image
 from tqdm import tqdm
 from sklearn.model_selection import train_test_split
-def load_train_test_splits(path_to_imgdir,test_size=0.1,val_size=0.1,seed=0,normalize_y2=True):
+from keras.preprocessing.image import ImageDataGenerator
+from matplotlib import pyplot as plt
+
+
+def load_train_test_splits(path_to_imgdir,test_size=0.1,val_size=0.1,seed=0,normalize_y2=True,augment=False):
     """ 
     Retruns train, test (and val) splits of X, Y1, Y2 contained in path 
     path contains folders named 'region_index,coordinates'
@@ -16,9 +20,9 @@ def load_train_test_splits(path_to_imgdir,test_size=0.1,val_size=0.1,seed=0,norm
     X = []
     Y1 = []
     Y2 =[]
-
-    # for path in tqdm(paths,desc='Loading and Processing Data'):
-    for path in tqdm(np.random.choice(paths,1000),desc='Loading and Processing Data',ascii=" ▖▘▝▗▚▞█"):
+    count = 0
+    for path in tqdm(paths,desc='Loading and Processing Data',ascii=" ▖▘▝▗▚▞█"):
+    # for path in tqdm(np.random.choice(paths,1000),desc='Loading and Processing Data',ascii=" ▖▘▝▗▚▞█"):
         imgs_paths = os.listdir(path)
         try:
             imgs_paths = [i.decode('UTF-8') for i in imgs_paths]
@@ -43,19 +47,40 @@ def load_train_test_splits(path_to_imgdir,test_size=0.1,val_size=0.1,seed=0,norm
         Y1.append(y1)
         Y2.append(y2)
 
+
     X = np.stack(X)
     Y1 = np.stack(Y1)
-
     Y2 = np.stack(Y2)
-    if normalize_y2:
 
+    if normalize_y2:
         long_norm = np.linalg.norm(Y2[:,0])
         Y2[:,0] = Y2[:,0]/long_norm
 
         lat_norm = np.linalg.norm(Y2[:,1])
         Y2[:,1] = Y2[:,1]/lat_norm
 
-    ## train is 0
+    if augment:
+        augmented_X = []
+        augmented_Y1 = []
+        augmented_Y2 =[]
+        def augment(image):
+            new_im = np.flip(image,axis=1)
+            return new_im
+
+        for idx,image in enumerate(tqdm(X,desc='Adding Augmented Data',ascii=" ▖▘▝▗▚▞█")):
+            new_image = augment(image)
+            augmented_X.append(new_image)
+            augmented_Y1.append(Y1[idx])
+            augmented_Y2.append(Y2[idx])
+
+        augmented_X = np.stack(augmented_X)
+        augmented_Y1 = np.stack(augmented_Y1)
+        augmented_Y2 = np.stack(augmented_Y2)
+
+        X = np.concatenate((X,augmented_X),axis=0)
+        Y1 = np.concatenate((Y1,augmented_Y1),axis=0)
+        Y2 = np.concatenate((Y2,augmented_Y2),axis=0)
+
     X_train, X_test, y1_train, y1_test,y2_train, y2_test= train_test_split(X,Y1,Y2,stratify=Y1,test_size=test_size,random_state=seed)
 
     X_train, X_val, y1_train, y1_val,y2_train, y2_val= train_test_split(X_train, y1_train,y2_train, stratify=y1_train, test_size=val_size/(1-test_size), random_state=seed)  # 0.11 * 0.9 ≈ 0.1
@@ -66,6 +91,7 @@ def load_train_test_splits(path_to_imgdir,test_size=0.1,val_size=0.1,seed=0,norm
     print('Val size: ', X_val.shape[0])
 
     print('X shape: {},    y1 shape: {},    y2 shape: {}'.format(X_val.shape[1:],y1_val.shape[1:],y2_val.shape[1:]))
+
 
     if normalize_y2:
         return X_train,y1_train,y2_train,X_test,y1_test,y2_test,X_val,y1_val,y2_val,long_norm,lat_norm

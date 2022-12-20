@@ -44,22 +44,21 @@ def main():
     polygrid = pickle.load(open("PolyGrid.pkl",'rb'))
     print('Total Squares : ', len(polygrid.keys()))
     for square_id in range(len(polygrid.keys())): ## 88 squares in the grid
-        if square_id in [73,74]:
-            print('Square ', square_id)
-            poly = Polygon((polygrid[square_id]))
-            count = 5 if square_id == 73 else 0 
-            failed = 0
-            pbar = tqdm(total = 200-count)
-            while count < 200:
-                if gen_image(poly.bounds,square_id): # if found image
-                    pbar.update(1)
-                    count += 1
-                    failed = 0
-                else:
-                    failed += 1
-                    if failed > 10000:
-                        print('square id {} failed after it found {} images'.format(square_id,count))
-                        break 
+        print('Square ', square_id)
+        poly = Polygon((polygrid[square_id]))
+        count = 0 
+        failed = 0
+        pbar = tqdm(total = 200-count)
+        while count < 200:
+            if gen_image(poly.bounds,square_id): # if found image
+                pbar.update(1)
+                count += 1
+                failed = 0
+            else:
+                failed += 1
+                if failed > 10000: 
+                    print('square id {} failed after it found {} images'.format(square_id,count))
+                    break 
 
     
 if __name__ == '__main__':
