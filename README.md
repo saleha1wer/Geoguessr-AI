@@ -14,7 +14,7 @@ network.py initialises the network we will train.
 
 load_data.py loads the train, test and validation data arrays from a directory containing the data.
 
-main.py trains a model with Inception-ResNet-v2 for feature extraction for 100 epochs on the full dataset. To use a different feature extraction or to exclude augmented data, change the variables that are initialised in main.py <br />
+main.py trains a model with Inception-ResNet-v2 for feature extraction for 125 epochs on the full dataset. To use a different feature extraction or to exclude augmented data, change the variables that are initialised in main.py <br />
 
 evaluate.py evalautes the model, (using three different approaches).
 
