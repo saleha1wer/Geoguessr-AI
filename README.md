@@ -39,6 +39,7 @@ training_plots.ipynb generated plots that demonstrate the training process.
 
 - [x] Data Gathering
 - [x] CNN that maps image --> region + coordinates 
+- [ ] Maybe a network that maps image --> country
 - [ ] LSTM with sequential input of the same area
 - [ ] Expand Map and gather more data
 - [ ] Chrome Extension that plays the game using a trained model
