@@ -1,7 +1,7 @@
 # GeoGuessr AI
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-This repository contains models that are used to classify the region and pinpoint the coordinates of an image, inspired by the game GeoGuessr.
+This project aimed to train models that are used to classify the region and pinpoint the coordinates of an image, inspired by the game GeoGuessr. The models are trained on a dataset of google street view images and their corresponding location data. The goal of these models is to be able to accurately predict the location of an image based on its visual features.
 
 More detailed info in [this medium post](https://medium.com/@salehalwer/geoguessr-inspired-exploration-of-cnns-predicting-street-view-image-locations-e7aaa2dc19f5)
 
