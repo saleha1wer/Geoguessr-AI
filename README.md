@@ -2,7 +2,8 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 This repository contains models that are used to classify the region and pinpoint the coordinates of an image, inspired by the game GeoGuessr.
-More detailed info at https://medium.com/@salehalwer/geoguessr-inspired-exploration-of-cnns-predicting-street-view-image-locations-e7aaa2dc19f5
+
+More detailed info in [this medium post](https://medium.com/@salehalwer/geoguessr-inspired-exploration-of-cnns-predicting-street-view-image-locations-e7aaa2dc19f5)
 
 ### Built With
 
